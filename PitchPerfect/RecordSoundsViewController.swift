@@ -14,10 +14,10 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
     // MARK: Alerts
     
     struct Alerts {
-        static let DismissAlert = "Dismiss"
-        static let RecordingFailedTitle = "Recording Failed"
-        static let RecordingFailedMessage = "Attempt to record audio was not successful."
-        static let AudioEngineError = "Audio Engine Error"
+        static let dismissAlert = "Dismiss"
+        static let recordingFailedTitle = "Recording Failed"
+        static let recordingFailedMessage = "Attempt to record audio was not successful."
+        static let audioEngineError = "Audio Engine Error"
     }
     
     // MARK: Label and Buttons
@@ -123,12 +123,12 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
         if flag {
             performSegue(withIdentifier: "stopRecording", sender: audioRecorder.url)
         } else {
-            showAlert(Alerts.AudioEngineError, message: Alerts.RecordingFailedMessage)
+            showAlert(Alerts.audioEngineError, message: Alerts.recordingFailedMessage)
         }
     }
     
     func audioRecorderEncodeErrorDidOccur(_ recorder: AVAudioRecorder, error: Error?) {
-        showAlert(Alerts.AudioEngineError, message: String(describing: error))
+        showAlert(Alerts.audioEngineError, message: String(describing: error))
     }
     
     // MARK: prepare for segue
@@ -166,7 +166,7 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
     
     func showAlert(_ title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: Alerts.DismissAlert, style: .default, handler: nil))
+        alert.addAction(UIAlertAction(title: Alerts.dismissAlert, style: .default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
 }
